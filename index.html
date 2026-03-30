@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doniyor - Frontend Developer</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+      (function () {
+        emailjs.init("16WhvWq-EcFlaX7y4");
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <header class="navbar">
+      <nav class="nav-container">
+        <div class="logo">Doniyor</div>
+        <ul class="nav-menu">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="home" class="hero">
+        <div class="hero-container">
+          <div class="hero-content">
+            <span class="hero-badge">💻 Frontend Developer</span>
+            <h1 class="hero-title">Hi, I'm <span>Doniyor</span></h1>
+            <p class="hero-subtitle">
+              Crafting beautiful, responsive web experiences with React &
+              Tailwind
+            </p>
+            <div class="cta-buttons">
+              <a href="#projects" class="btn btn-primary">View My Work</a>
+              <a href="#contact" class="btn btn-secondary">Let's Talk</a>
+            </div>
+          </div>
+          <div class="hero-image">
+            <img
+              src="https://avatars.githubusercontent.com/u/122441489?v=4"
+              alt="Doniyor"
+              class="profile-img"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="about">
+        <div class="container">
+          <h2 class="section-title">About Me</h2>
+          <div class="about-grid">
+            <div class="about-text">
+              <p>
+                I'm a passionate Frontend Developer from Busan, South Korea,
+                specialized in building modern, responsive web applications.
+                With a strong foundation in React, JavaScript, and CSS, I create
+                clean, efficient code that users love.
+              </p>
+              <p>
+                I'm always learning and excited to tackle new challenges that
+                help me grow as a developer and deliver exceptional results.
+              </p>
+            </div>
+            <div class="about-info">
+              <div class="info-box">
+                <h4>Experience</h4>
+                <p>6+ Months</p>
+              </div>
+              <div class="info-box">
+                <h4>Location</h4>
+                <p>Busan, SK</p>
+              </div>
+              <div class="info-box">
+                <h4>Email</h4>
+                <p>odiljonovd996@gmail.com</p>
+              </div>
+              <div class="info-box">
+                <h4>Availability</h4>
+                <p>Open for Work</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="skills">
+        <div class="container">
+          <h2 class="section-title">Tech Stack</h2>
+          <div class="skills-grid">
+            <div class="skill-card">
+              <i class="fab fa-html5"></i>
+              <h3>HTML5</h3>
+              <p>Semantic markup & accessibility</p>
+            </div>
+            <div class="skill-card">
+              <i class="fab fa-css3"></i>
+              <h3>CSS3</h3>
+              <p>Responsive & modern styling</p>
+            </div>
+            <div class="skill-card">
+              <i class="fab fa-js"></i>
+              <h3>JavaScript</h3>
+              <p>Interactive & dynamic features</p>
+            </div>
+            <div class="skill-card">
+              <i class="fab fa-react"></i>
+              <h3>React</h3>
+              <p>Component-based architecture</p>
+            </div>
+            <div class="skill-card">
+              <i class="fas fa-wind"></i>
+              <h3>Tailwind CSS</h3>
+              <p>Utility-first styling</p>
+            </div>
+            <div class="skill-card">
+              <i class="fab fa-git-alt"></i>
+              <h3>Git & GitHub</h3>
+              <p>Version control & collaboration</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="projects">
+        <div class="container">
+          <h2 class="section-title">Featured Projects</h2>
+          <div class="projects-grid">
+            <article class="project-card">
+              <div class="project-header">
+                <i class="fab fa-youtube"></i>
+              </div>
+              <h3>Video Streaming Web App</h3>
+              <p>
+                Modern video streaming platform built with React and YouTube API
+                integration.
+              </p>
+              <div class="project-tags">
+                <span class="tag">React</span>
+                <span class="tag">API</span>
+              </div>
+              <a href="#" class="project-link">View Project →</a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-header">
+                <i class="fas fa-film"></i>
+              </div>
+              <h3>Movie Discovery App</h3>
+              <p>
+                Discover movies using TMDB API with smooth animations and
+                beautiful UI.
+              </p>
+              <div class="project-tags">
+                <span class="tag">React</span>
+                <span class="tag">TMDB API</span>
+              </div>
+              <a href="https://movie-copy-one.vercel.app/" class="project-link"
+                >View Project →</a
+              >
+            </article>
+
+            <article class="project-card">
+              <div class="project-header">
+                <i class="fas fa-store"></i>
+              </div>
+              <h3>E-Commerce Store</h3>
+              <p>
+                Full-stack e-commerce solution with React frontend and Stripe
+                payment integration.
+              </p>
+              <div class="project-tags">
+                <span class="tag">React</span>
+                <span class="tag">Stripe</span>
+              </div>
+              <a href="#" class="project-link">View Project →</a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-header">
+                <i class="fas fa-child"></i>
+              </div>
+              <h3>Kindergarten Finder</h3>
+              <p>
+                Find nearby kindergartens with interactive map using React and
+                Leaflet.
+              </p>
+              <div class="project-tags">
+                <span class="tag">React</span>
+                <span class="tag">Maps</span>
+              </div>
+              <a href="#" class="project-link">View Project →</a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-header">
+                <i class="fas fa-shield-virus"></i>
+              </div>
+              <h3>SEOM Dashboard</h3>
+              <p>
+                Sanitary Safety Center management dashboard with real-time data
+                visualization.
+              </p>
+              <div class="project-tags">
+                <span class="tag">React</span>
+                <span class="tag">Dashboard</span>
+              </div>
+              <a href="#" class="project-link">View Project →</a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-header">
+                <i class="fas fa-cube"></i>
+              </div>
+              <h3>Portfolio Website</h3>
+              <p>
+                Interactive personal portfolio showcasing frontend development
+                skills and projects.
+              </p>
+              <div class="project-tags">
+                <span class="tag">React</span>
+                <span class="tag">Design</span>
+              </div>
+              <a href="#" class="project-link">View Project →</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="contact">
+        <div class="container">
+          <h2 class="section-title">Get In Touch</h2>
+          <div class="contact-grid">
+            <div class="contact-info">
+              <h3>Let's Work Together</h3>
+              <p>Have a project in mind? I'd love to hear about it.</p>
+
+              <div class="contact-details">
+                <div class="contact-item">
+                  <i class="fas fa-envelope"></i>
+                  <a href="mailto:odiljonovd996@gmail.com"
+                    >odiljonovd996@gmail.com</a
+                  >
+                </div>
+                <div class="contact-item">
+                  <i class="fas fa-phone"></i>
+                  <a href="tel:+821021949561">+82 010 2194-9561</a>
+                </div>
+                <div class="contact-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <p>Busan, South Korea</p>
+                </div>
+              </div>
+
+              <div class="social-links">
+                <a href="https://github.com/donnarch" aria-label="GitHub">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a
+                  href="https://instagram.com/websites.by.donnarch_"
+                  aria-label="Instagram"
+                >
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" aria-label="LinkedIn">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+            </div>
+            <form id="contact-form" class="contact-form">
+              <input type="text" name="name" placeholder="Your Name" required />
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                required
+              />
+              <textarea
+                name="message"
+                rows="5"
+                placeholder="Your Message"
+                required
+              ></textarea>
+              <button type="submit" class="btn btn-primary">
+                Send Message
+              </button>
+              <p class="form-feedback"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2026 Doniyor. Built with <i class="fas fa-heart"></i> & Coffee.
+        </p>
+      </div>
+    </footer>
+
+    <script src="/js/script.js"></script>
+  </body>
+</html>
