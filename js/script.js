@@ -48,22 +48,33 @@
   }, 400);
 })();
 
-// ===== MOBILE MENU TOGGLE =====
-const hamburger = document.querySelector(".hamburger");
-const navMenu = document.querySelector(".nav-menu");
-const navLinks = document.querySelectorAll(".nav-link");
+// ===== SIDEBAR TOGGLE (MOBILE) =====
+const sidebar = document.getElementById("sidebar");
+const menuToggle = document.getElementById("menuToggle");
+const closeSidebar = document.getElementById("closeSidebar");
+const overlay = document.getElementById("overlay");
 
-if (hamburger && navMenu) {
-  hamburger.addEventListener("click", () => {
-    navMenu.classList.toggle("active");
-    hamburger.classList.toggle("active");
-  });
+function openSidebar() {
+  if (sidebar) sidebar.classList.add("open");
+  if (overlay) overlay.classList.add("active");
+  document.body.style.overflow = "hidden";
 }
 
+function closeSidebarFunc() {
+  if (sidebar) sidebar.classList.remove("open");
+  if (overlay) overlay.classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+if (menuToggle) menuToggle.addEventListener("click", openSidebar);
+if (closeSidebar) closeSidebar.addEventListener("click", closeSidebarFunc);
+if (overlay) overlay.addEventListener("click", closeSidebarFunc);
+
+// Close sidebar when a nav link is clicked (mobile)
+const navLinks = document.querySelectorAll(".nav-link");
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
-    navMenu.classList.remove("active");
-    if (hamburger) hamburger.classList.remove("active");
+    if (window.innerWidth <= 768) closeSidebarFunc();
   });
 });
 
@@ -75,17 +86,130 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     const targetElement = document.querySelector(targetId);
     if (targetElement) {
       e.preventDefault();
-      const navbarHeight =
-        document.querySelector(".navbar")?.offsetHeight || 70;
+      const offset = 20;
       const elementPosition =
         targetElement.getBoundingClientRect().top + window.pageYOffset;
       window.scrollTo({
-        top: elementPosition - navbarHeight,
+        top: elementPosition - offset,
         behavior: "smooth",
       });
     }
   });
 });
+
+// ===== ACTIVE NAV LINK ON SCROLL =====
+function setActiveLink() {
+  const sections = document.querySelectorAll("section");
+  let current = "";
+  const scrollPosition = window.scrollY + 100;
+
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop;
+    const sectionBottom = sectionTop + section.offsetHeight;
+    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach((link) => {
+    link.classList.remove("active");
+    const href = link.getAttribute("href");
+    if (href && href === `#${current}`) {
+      link.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", setActiveLink);
+window.addEventListener("load", setActiveLink);
+
+// ===== TOP NAVIGATION ICONS (LEFT/RIGHT) =====
+const sections = ["home", "about", "skills", "projects", "contact"];
+let currentSectionIndex = 0;
+
+function updateCurrentSectionIndex() {
+  const scrollPosition = window.scrollY + 100;
+  sections.forEach((sectionId, index) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const sectionTop = section.offsetTop;
+      const sectionBottom = sectionTop + section.offsetHeight;
+      if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+        currentSectionIndex = index;
+      }
+    }
+  });
+}
+
+function navigateToSection(direction) {
+  let newIndex = currentSectionIndex + direction;
+  if (newIndex < 0) newIndex = 0;
+  if (newIndex >= sections.length) newIndex = sections.length - 1;
+
+  if (newIndex !== currentSectionIndex) {
+    const targetSection = document.getElementById(sections[newIndex]);
+    if (targetSection) {
+      const offset = 20;
+      const elementPosition =
+        targetSection.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: elementPosition - offset,
+        behavior: "smooth",
+      });
+      currentSectionIndex = newIndex;
+    }
+  }
+}
+
+const leftIcon = document.getElementById("leftNavIcon");
+const rightIcon = document.getElementById("rightNavIcon");
+
+if (leftIcon) {
+  leftIcon.addEventListener("click", () => navigateToSection(-1));
+}
+if (rightIcon) {
+  rightIcon.addEventListener("click", () => navigateToSection(1));
+}
+
+window.addEventListener("scroll", updateCurrentSectionIndex);
+window.addEventListener("load", updateCurrentSectionIndex);
+
+// ===== SLIDER NAVIGATION (Tech Stack & Projects) =====
+function setupSlider(sliderId, leftArrowSelector, rightArrowSelector) {
+  const slider = document.getElementById(sliderId);
+  if (!slider) return;
+
+  const scrollAmount = 340; // Width of one card + gap
+
+  const leftArrow = document.querySelector(
+    `${leftArrowSelector}[data-slider="${sliderId}"]`
+  );
+  const rightArrow = document.querySelector(
+    `${rightArrowSelector}[data-slider="${sliderId}"]`
+  );
+
+  if (leftArrow) {
+    leftArrow.addEventListener("click", () => {
+      slider.scrollBy({
+        left: -scrollAmount,
+        behavior: "smooth",
+      });
+    });
+  }
+
+  if (rightArrow) {
+    rightArrow.addEventListener("click", () => {
+      slider.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
+    });
+  }
+}
+
+// Initialize both sliders
+setupSlider("skillsSlider", ".left-arrow", ".right-arrow");
+setupSlider("projectsSlider", ".left-arrow", ".right-arrow");
 
 // ===== CONTACT FORM =====
 const form = document.getElementById("contact-form");
@@ -127,32 +251,6 @@ if (form) {
   });
 }
 
-// ===== ACTIVE NAV LINK ON SCROLL =====
-function setActiveLink() {
-  const sections = document.querySelectorAll("section");
-  let current = "";
-  const scrollPosition = window.scrollY + 120;
-
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop;
-    const sectionBottom = sectionTop + section.offsetHeight;
-    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-      current = section.getAttribute("id");
-    }
-  });
-
-  navLinks.forEach((link) => {
-    link.classList.remove("active");
-    const href = link.getAttribute("href");
-    if (href && href === `#${current}`) {
-      link.classList.add("active");
-    }
-  });
-}
-
-window.addEventListener("scroll", setActiveLink);
-window.addEventListener("load", setActiveLink);
-
 // ===== SCROLL REVEAL ANIMATION =====
 const revealElements = document.querySelectorAll(
   ".skill-card, .project-card, .about-grid, .contact-grid"
@@ -187,14 +285,5 @@ revealElements.forEach((el) => {
     el.style.transform = "translateY(16px)";
     el.style.transition = "opacity 0.6s ease 0.1s, transform 0.5s ease";
     appearOnScroll.observe(el);
-  }
-});
-
-// Ensure initial active link after load
-window.addEventListener("load", () => {
-  setActiveLink();
-  if (document.getElementById("dynamicName")?.innerText === "Doniyor") {
-    const nameCur = document.getElementById("nameCursor");
-    if (nameCur) nameCur.style.display = "none";
   }
 });
